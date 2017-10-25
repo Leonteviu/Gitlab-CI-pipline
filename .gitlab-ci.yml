@@ -2,6 +2,8 @@ stages:
   - build
   - test
   - review
+  - stage
+  - production
 
 build:
   stage: build
@@ -25,3 +27,21 @@ autodeploy dev:
   environment:
     name: dev
     url: http://dev.example.com
+
+staging:
+  stage: stage
+  when: manual
+  script:
+    - echo 'Deploy'
+  environment:
+    name: stage
+    url: https://dev.example.com
+
+production:
+  stage: production
+  when: manual
+  script:
+    - echo 'Deploy'
+  environment:
+    name: production
+    url: https://dev.example.com
